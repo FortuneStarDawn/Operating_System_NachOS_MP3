@@ -276,12 +276,7 @@ Thread::Sleep (bool finishing)
   this->setBurstTime(this->getExecTime()*0.5 + prev*0.5);
   this->setExecTime(0);
   //cout << "Tick [" << stats->totalTicks << "]: Thread [" << this->getID() << "] changes its predicted burst time from [" << prev << "] to [" << this->getBurstTime() << "]" << endl;
-  if(this->getID() > 0) //ignore main(0) and postal worker(-1)
-  {
-    if(this->getPriority() >= 100) cout << "Tick [" << stats->totalTicks << "]: Thread [" << this->getID() << "] is removed from queue L[1]" << endl;
-    else if(this->getPriority() >= 50) cout << "Tick [" << stats->totalTicks << "]: Thread [" << this->getID() << "] is removed from queue L[2]" << endl;
-    else cout << "Tick [" << stats->totalTicks << "]: Thread [" << this->getID() << "] is removed from queue L[3]" << endl;
-  }
+
   kernel->scheduler->Run(nextThread, finishing);
 }
 
